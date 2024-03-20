@@ -4,5 +4,25 @@ body {
 }
 
 h1 {
-    background-color: aliceblue;
+    color: aliceblue;
+    padding: 50px;
+    margin: 50px;
 }
+.text {
+    color: aliceblue;
+}
+.zgr {
+    text-align: center;
+}
+#yesbox {
+    font-size: 50px;
+    margin: 20px;
+    padding: 20px;
+}
+#container {
+    font-size: 20px;
+}
+#newLocation {
+    position: absolute;
+  }
+  
