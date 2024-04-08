@@ -23,7 +23,7 @@ h1 {
 #noBox button {
     font-size: 20px;
     padding: 10px 20px;
-    background-color: black;
+    background-color: transparent;
     color: white;
     border: none;
     cursor: pointer;
