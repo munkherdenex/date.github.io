@@ -1,8 +1,37 @@
-<link rel="stylesheet" href="yes.css">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="yes.css">
+    <title>Date</title>
 
 </head>
 <body>
-    <h1 id="meeting-date">Great, I'll see you on <time></time> at 18:00,<br> can't wait to see you. &#x2764;</h1>
+    <h1 id="meeting-date">Great, I'll see you on <time datetime="2024-04-14T18:00">April 14, 2024 at 18:00
+    </time><br> can't wait to see you. &#x2764;</h1>
+    <script>
+        function getRandomPosition() {
+            var x = Math.random() * window.innerWidth;
+            var y = Math.random() * window.innerHeight;
+            return { x: x, y: y };
+        }
+
+        function createHeart() {
+            var heart = document.createElement("div");
+            heart.innerHTML = "&#x2764;"; // Heart emoji
+            heart.className = "heart";
+            var position = getRandomPosition();
+            heart.style.left = position.x + "px";
+            heart.style.top = position.y + "px";
+            document.body.appendChild(heart);
+
+            setTimeout(function() {
+                heart.remove();
+            }, 3000); 
+        }
+
+        setInterval(createHeart, 2000); 
+    </script>
 </body>
-<script src="button.js"></script>
+</html>

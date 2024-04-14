@@ -10,3 +10,10 @@ h1 {
 .text {
     color: aliceblue;
 }
+
+.heart {
+    position: absolute;
+    font-size: 30px; 
+    color: red;
+}
+
