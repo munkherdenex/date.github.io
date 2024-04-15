@@ -27,5 +27,25 @@ function moveButton() {
   }
   calculateMeetingDate();
   
-  
+  function getRandomPosition() {
+    var x = Math.random() * window.innerWidth;
+    var y = Math.random() * window.innerHeight;
+    return { x: x, y: y };
+}
+
+function createHeart() {
+    var heart = document.createElement("div");
+    heart.innerHTML = "&#x2764;"; // Heart emoji
+    heart.className = "heart";
+    var position = getRandomPosition();
+    heart.style.left = position.x + "px";
+    heart.style.top = position.y + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(function() {
+        heart.remove();
+    }, 3000); 
+}
+
+setInterval(createHeart, 2000);
   
