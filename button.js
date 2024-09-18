@@ -27,11 +27,16 @@ function moveButton() {
   }
   calculateMeetingDate();
   
-  function getRandomPosition() {
-    var x = Math.random() * window.innerWidth;
-    var y = Math.random() * window.innerHeight;
-    return { x: x, y: y };
+  function getRandomPosition(element) {
+    const elementWidth = element.offsetWidth;
+    const elementHeight = element.offsetHeight;
+    
+    const x = Math.random() * (window.innerWidth - elementWidth);
+    const y = Math.random() * (window.innerHeight - elementHeight);
+    
+    return { x, y };
 }
+
 
 function createHeart() {
     var heart = document.createElement("div");
