@@ -1,56 +1,66 @@
+// Move the "No" button randomly
 function moveButton() {
-    const button = document.querySelector("#noBox button");
-    const randomX = Math.random() * (window.innerWidth - button.offsetWidth);
-    const randomY = Math.random() * (window.innerHeight - button.offsetHeight);
-    
-    button.style.left = randomX + "px";
-    button.style.top = randomY + "px";
-  }
+  const button = document.querySelector("#noBox button");
+  if (!button) return; // Prevent errors if button not found
 
-  function calculateMeetingDate() {
-    // Ulaanbaatar Standard Time (GMT+8) tohiruulah
-    const now = new Date();
-    const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
-    const UlaanbaatarTime = new Date(utcTime + (3600000 * 8));
-    
-    // Uulzah odriig 2 honogiin daraa tavih
-    const meetingDate = new Date(UlaanbaatarTime);
-    meetingDate.setDate(meetingDate.getDate() + 2);
+  const randomX = Math.random() * (window.innerWidth - button.offsetWidth);
+  const randomY = Math.random() * (window.innerHeight - button.offsetHeight);
+
+  button.style.position = "absolute"; // Make sure button can move
+  button.style.left = `${randomX}px`;
+  button.style.top = `${randomY}px`;
+}
+
+// Calculate and display the meeting date
+function calculateMeetingDate() {
+  const now = new Date();
   
-    // Uulzah odroo tohiruulah
-    const options = { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'Asia/Ulaanbaatar' };
-    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(meetingDate);
-  
-    // Uulzaltiin ognoog HTML dr tohiruulah
-    const timeElement = document.querySelector('time');
+  // Convert to Ulaanbaatar time (GMT+8)
+  const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+  const ulaanbaatarTime = new Date(utcTime + (3600000 * 8));
+
+  // Set the meeting 2 days later
+  ulaanbaatarTime.setDate(ulaanbaatarTime.getDate() + 2);
+
+  // Format date nicely
+  const options = { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'Asia/Ulaanbaatar' };
+  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(ulaanbaatarTime);
+
+  const timeElement = document.querySelector('time');
+  if (timeElement) {
     timeElement.textContent = formattedDate;
   }
-  calculateMeetingDate();
-  
-  function getRandomPosition(element) {
-    const elementWidth = element.offsetWidth;
-    const elementHeight = element.offsetHeight;
-    
-    const x = Math.random() * (window.innerWidth - elementWidth);
-    const y = Math.random() * (window.innerHeight - elementHeight);
-    
-    return { x, y };
+}
+calculateMeetingDate();
+
+// Generate a random position for elements
+function getRandomPosition() {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  const x = Math.random() * (width - 50);  // Assume approx element size
+  const y = Math.random() * (height - 50);
+
+  return { x, y };
 }
 
-
+// Create a floating heart element
 function createHeart() {
-    var heart = document.createElement("div");
-    heart.innerHTML = "&#x2764;"; // Heart emoji
-    heart.className = "heart";
-    var position = getRandomPosition();
-    heart.style.left = position.x + "px";
-    heart.style.top = position.y + "px";
-    document.body.appendChild(heart);
+  const heart = document.createElement("div");
+  heart.innerHTML = "&#x2764;";
+  heart.className = "heart";
 
-    setTimeout(function() {
-        heart.remove();
-    }, 3000); 
+  const { x, y } = getRandomPosition();
+  heart.style.left = `${x}px`;
+  heart.style.top = `${y}px`;
+
+  document.body.appendChild(heart);
+
+  // Remove the heart after 3 seconds
+  setTimeout(() => {
+    heart.remove();
+  }, 3000);
 }
 
+// Create a heart every 2 seconds
 setInterval(createHeart, 2000);
-  

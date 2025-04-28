@@ -1,19 +1,55 @@
-body {
+/* Reset some basic browser defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #000;
+    color: #f0f8ff; /* Light bluish text (AliceBlue) */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    background-color: black;
-}
-
-h1 {
-    color: aliceblue;
-    margin-top: 150px;
-}
-.text {
-    color: aliceblue;
-}
-
-.heart {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    line-height: 1.5;
+  }
+  
+  .container {
+    padding: 20px;
+  }
+  
+  /* Heart animation */
+  .heart {
     position: absolute;
     font-size: 30px; 
     color: red;
-}
-
+    animation: float 4s ease-in infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-200px) scale(1.5);
+      opacity: 0;
+    }
+  }
+  
+  /* Responsive for small devices */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+  
